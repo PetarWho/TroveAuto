@@ -2,7 +2,7 @@
  *    -> Author: Angels-D
  *
  * LastChange
- *    -> 2025/09/16 18:30
+ *    -> 2026/03/30 20:00
  *    -> 1.0.0
  *
  * Build
@@ -27,7 +27,8 @@
  * 账号地址: (-9 Address) FF 70 1C FF 70 18 8D 45 B0
  * 视野放大: (+3 Address) F3 0F 11 5F 2C
  * 穿墙: (+0 Address) 74 31 FF 73 14 8B 47 04 2B 07
- * 绕道: (+1 Address) DC 67 68 C6
+ * 绕过: (+1 Address) DC 67 68 C6
+ * 性能解放: (+0 Address) 75 0B 6A 21 FF 15
  * 技能栏: 5X CF XX XX 55 CF XX XX 5X CF XX XX 55 CF XX XX FE FF FF FF 00 00 00 00 65 CF XX XX 0X 00 00 00 55 CF XX XX XX XX XX XX 55 CF XX XX 55 CF XX XX
  *            (-170H Value) 数量
  *            (+0 Value) 55释放,5D按下
@@ -66,6 +67,7 @@ namespace Module
         static Feature disMount;
         static Feature lockCam;
         static Feature unlockMapLimit;
+        static Feature perfUnlock;
         static Feature quickMining;
         static Feature quickMiningGeode;
         static Feature noGravity;
@@ -110,6 +112,7 @@ namespace Module
              {"Module::Feature::disMount", &Module::Feature::disMount},
              {"Module::Feature::lockCam", &Module::Feature::lockCam},
              {"Module::Feature::unlockMapLimit", &Module::Feature::unlockMapLimit},
+             {"Module::Feature::perfUnlock", &Module::Feature::perfUnlock},
              {"Module::Feature::quickMining", &Module::Feature::quickMining},
              {"Module::Feature::quickMiningGeode", &Module::Feature::quickMiningGeode},
              {"Module::Feature::noGravity", &Module::Feature::noGravity},
@@ -255,52 +258,57 @@ std::pair<float, float> CalculateAngles(const float &ax, const float &ay, const 
 namespace Module
 {
     Feature Feature::hideAnimation = {
-        {0x82D915},
+        {0x7564C5},
         {0x4C},
         {0x44},
         {0x3, "F3 0F 11 44 24 24 F3 0F 58 84 24 80 00 00 00 50 F3 0F 11 43 24 E8 XX XX XX XX 8D 44 24 34 50"}};
     Feature Feature::autoAttack = {
-        {0xB0BA38},
+        {0xA053C8},
         {0xF0},
         {0xF1},
         {0x1, "DF F1 DD D8 72 1F"}};
     Feature Feature::breakBlocks = {
-        {0xAFEB53},
+        {0xA57FC3},
         {0x01},
         {0x00},
         {0x3, "80 7F XX 00 0F 84 XX XX XX XX 8B 4B 08 E8 XX XX XX XX FF 75 0C 8B 4D 10 8B F0 FF 75 08 8B 45 14 83 EC 0C 8B 3E 8B D4 6A 01 89 0A 8B CE 89 42 04 8B 45 18"}};
     Feature Feature::byPass = {
-        {0x1940C6},
+        {0x183406},
         {0x47},
         {0x67},
         {0x1, "DC 67 68 C6"}};
     Feature Feature::clipCam = {
-        {0xAD444A},
+        {0xAF840A},
         {0x90, 0x90, 0x90},
         {0x0F, 0x29, 0x01},
         {0x0, "0F 29 01 C7 41 34 00 00 00 00 0F"}};
     Feature Feature::disMount = {
-        {0x36BE8E},
+        {0x3354CE},
         {0xEB},
         {0x74},
         {0x0, "74 XX 8B 07 8B CF 6A 00 6A 00 FF 50"}};
     Feature Feature::lockCam = {
-        {0xAAAC55},
+        {0x8E6A45},
         {0xEB},
         {0x74},
         {0x0, "74 05 8B 01 FF 50 0C 8B E5"}};
     Feature Feature::unlockMapLimit = {
-        {0x97B6DD},
+        {0x8E6A45},
         {0xEB},
         {0x77},
         {0x0, "77 XX B8 XX XX XX XX F3 0F 10 08 F3 0F 11 89 XX XX XX XX 8B 89"}};
+    Feature Feature::perfUnlock = {
+        {0x93459E},
+        {0xEB},
+        {0x75},
+        {0x0, "75 0B 6A 21 FF 15"}};
     Feature Feature::quickMining = {
-        {0x9DDD68},
+        {0x8FE708},
         {0xF0},
         {0xF1},
         {0x1, "DF F1 DD D8 72 61"}};
     Feature Feature::quickMiningGeode = {
-        {0xC36927},
+        {0xABA9B7},
         {0xF0},
         {0xF1},
         {0x1, "DF F1 DD D8 72 35 8D"}};
@@ -362,13 +370,13 @@ namespace Module
             dd 00 28 C4 04
      */
     Feature Feature::noClip = {
-        {0x6ECA02},
+        {0x64B0D2},
         {0xE8, 0xFF, 0xFF, 0xFF, 0xFF, 0x90},
         {0x8B, 0x43, 0x14, 0x83, 0xC4, 0x8},
         {-0x5A3, "74 31 FF 73 14 8B 47 04 2B 07"},
         {0x58, 0x83, 0xC4, 0x08, 0x50, 0x8B, 0x43, 0x14, 0x53, 0x51, 0x83, 0xEC, 0x30, 0xF3, 0x0F, 0x7F, 0x44, 0x24, 0x20, 0xF3, 0x0F, 0x7F, 0x4C, 0x24, 0x10, 0xF3, 0x0F, 0x7F, 0x14, 0x24, 0xBB, 0xE0, 0xE6, 0x30, 0x1D, 0xB9, 0x00, 0x00, 0x00, 0x00, 0x03, 0x1C, 0x8D, 0xFF, 0xFF, 0xFF, 0xFF, 0x8B, 0x1B, 0x83, 0xFB, 0x00, 0x0F, 0x84, 0x32, 0x00, 0x00, 0x00, 0x41, 0x83, 0xF9, 0x04, 0x7C, 0xE8, 0x0F, 0x10, 0x83, 0x80, 0x00, 0x00, 0x00, 0x0F, 0x28, 0xC8, 0x0F, 0xC2, 0xCC, 0x02, 0x0F, 0x28, 0xD5, 0x0F, 0xC2, 0xD0, 0x02, 0x66, 0x0F, 0xDB, 0xCA, 0x0F, 0x50, 0xC9, 0x83, 0xE1, 0x07, 0x83, 0xF9, 0x07, 0x0F, 0x85, 0x04, 0x00, 0x00, 0x00, 0xC6, 0x40, 0x01, 0x00, 0xF3, 0x0F, 0x6F, 0x14, 0x24, 0xF3, 0x0F, 0x6F, 0x4C, 0x24, 0x10, 0xF3, 0x0F, 0x6F, 0x44, 0x24, 0x20, 0x83, 0xC4, 0x30, 0x59, 0x5B, 0xC3, 0x00, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0xC4, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00}};
     Feature Feature::unlockZoomLimit = {
-        {0xAD23C6},
+        {0xAF6386},
         {0x57},
         {0x5F},
         {0x3, "F3 0F 11 5F 2C"}};
@@ -1026,6 +1034,8 @@ void FunctionOn(const Memory::DWORD pid, const char *funtion, const char *argv, 
         thread = new std::thread(Module::SetFeature, Module::Feature::lockCam, pid, std::stoul(_argv[0]));
     else if (std::strcmp(funtion, "SetUnlockMapLimit") == 0)
         thread = new std::thread(Module::SetFeature, Module::Feature::unlockMapLimit, pid, std::stoul(_argv[0]));
+    else if (std::strcmp(funtion, "SetPerfUnlock") == 0)
+        thread = new std::thread(Module::SetFeature, Module::Feature::perfUnlock, pid, std::stoul(_argv[0]));
     else if (std::strcmp(funtion, "SetQuickMining") == 0)
         thread = new std::thread(Module::SetFeature, Module::Feature::quickMining, pid, std::stoul(_argv[0]));
     else if (std::strcmp(funtion, "SetQuickMiningGeode") == 0)

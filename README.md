@@ -56,6 +56,7 @@
   | ✅ | 穿墙                         | ✅ | 失量移动                     |
   | ✅ | 跟随目标                     | ✅ | 全反重力                     |
   | ✅ | 透视                         | ✅ | 自动瞄准                     |
+  | ✅ | 性能解放                     |    |                              |
 
 ### English
 
@@ -109,3 +110,4 @@
 | ✅ | Coordinate Teleport             | ✅ | Wall Clipping                   |
 | ✅ | Target Following                | ✅ | X-ray Vision                    |
 | ✅ | Anti-gravity                    | ✅ | Auto Aim                        |
+| ✅ | perfUnlock                      |    |                                 |

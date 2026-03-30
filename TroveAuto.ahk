@@ -1,6 +1,6 @@
 ;@Ahk2Exe-UpdateManifest 2
 ;@Ahk2Exe-SetName TroveAuto
-;@Ahk2Exe-SetProductVersion 2.4.16
+;@Ahk2Exe-SetProductVersion 2.4.17
 ;@Ahk2Exe-SetCopyright GPL-3.0 license
 ;@Ahk2Exe-SetLanguage Chinese_PRC
 ;@Ahk2Exe-SetMainIcon TroveAuto.ico
@@ -30,8 +30,8 @@ config := _Config(
         "Global", Map(
             "GameTitle", "Trove.exe",
             "GamePath", "",
-            "ConfigVersion", "20250917134000",
-            "AppVersion", "20250917134000",
+            "ConfigVersion", "20260330200000",
+            "AppVersion", "20260330200000",
             "Source", "https://github.com/Angels-D/TroveAuto/",
             "Mirror", "https://github.moeyy.xyz/",
             "StopInHub", true,
@@ -70,22 +70,23 @@ config := _Config(
             "Fish", "f",
         ),
         "Address", Map(
-            "Animation", "0x82D915",
-            "Attack", "0xB0BA38",
-            "Breakblocks", "0xAFEB53",
-            "ByPass", "0x1940C6",
-            "ClipCam", "0xAD444A",
-            "Dismount", "0x36BE8E",
-            "Fish", "0x11FD39C",
-            "LockCam", "0xAAAC55",
-            "Map", "0x97B6DD",
-            "Mining", "0x9DDD68",
-            "MiningGeode", "0xC36927",
-            "NoClip", "0x6ECA02",
-            "Player", "0x11FF548",
-            "Setting", "0xB1F21B",
-            "World", "0x11FF5A4",
-            "Zoom", "0xAD23C6",
+            "Animation", "0x7564C5",
+            "Attack", "0xA053C8",
+            "Breakblocks", "0xA57FC3",
+            "ByPass", "0x183406",
+            "ClipCam", "0xAF840A",
+            "Dismount", "0x3354CE",
+            "Fish", "0x10AD7DC",
+            "LockCam", "0x8E6A45",
+            "Map", "0x9C043D",
+            "Mining", "0x8FE708",
+            "MiningGeode", "0xABA9B7",
+            "NoClip", "0x64B0D2",
+            "perfUnlock", "0x93459E",
+            "Player", "0x10B60AC",
+            "World", "0x10B6158",
+            "Zoom", "0xAF6386",
+            "Setting", "0x93E34B",
         ),
         "Address_Offset", Map(
             "Setting_DrawDistance", "0x0,0x28",
@@ -129,7 +130,8 @@ config := _Config(
             "Map", "0xEB,0x77",
             "Mining", "0xF0,0xF1",
             "MiningGeode", "0xF0,0xF1",
-            "NoClip", "0xEB,0x74",
+            "NoClip", "0xEB,0x75",
+            "perfUnlock", "0xEB,0x75",
             "Zoom", "0x57,0x5F",
         ),
         "Address_Offset_Signature", Map(
@@ -146,6 +148,7 @@ config := _Config(
             "MiningGeode", "1,DF F1 DD D8 72 35 8D",
             "NoClip", "-1443, 74 31 FF 73 14 8B 47 04 2B 07",
             "Player", "20,55 8B EC 83 E4 F8 83 EC 08 F3 0F 2A 45 10 56 8B F1 57 8B 3D",
+            "perfUnlock", "0,75 0B 6A 21 FF 15",
             "Setting", "5,FF 52 0C 8B 0D XX XX XX XX 8B F8",
             "World", "10,55 8B EC 83 7D 08 04 75 10 A1 XX XX XX XX 85 C0 74 07 C6 80 59 01 00 00 01 5D C2 04 00",
             "Zoom", "3,F3 0F 11 5F 2C",
@@ -295,24 +298,24 @@ MainGui.Add("Button", "ys vGameStartBtn", t("启动游戏"))
 MainGui.Add("Text", "xs w200", t("说明: 当前使用Steam打开游戏会强制绑定账号, 直接使用官方启动器即可跳过绑定"))
 MainGui.Add("Button", "w200 vModsPathBtn", t("Mods文件夹"))
 MainGui.Add("Link", "w200", t("
-    (
-        说明: 本游戏支持模组, 可通过各公会群和Steam创意工坊等渠道下载, Mod制作或下载可使用
-        <a href="https://github.com/DazoTrove/TroveTools.NET/">TroveTools.NET</a>等工具
-    )")
+(
+    说明: 本游戏支持模组, 可通过各公会群和Steam创意工坊等渠道下载, Mod制作或下载可使用
+    <a href="https://github.com/DazoTrove/TroveTools.NET/">TroveTools.NET</a>等工具
+)")
 )
 MainGui.Add("Button", "w200 vModCfgsPathBtn", t("ModCfgs文件夹"))
 MainGui.Add("Link", "w200", Format(t("说明: Cfgs用于保存某些Mod的配置信息,一般位于<a href=`"file:///{1}\Trove\ModCfgs\`">%AppData%\Trove\ModCfgs\</a>中"), A_AppData))
 MainGui.Add("Text", "w200", t("Mod使用教程: 后缀为.tmod的文件存放在Mods文件夹, 后缀为.cfg的文件存放在ModCfgs文件夹, 放置后重启游戏生效"))
 MainGui.Add("Link", "w200", t("附: 官方邮箱<a href=`"mailto:support@gamigo.com`">support@gamigo.com</a>(通过此邮箱询问交易问题、账号问题等内容,注意使用英文描述"))
 MainGui.Add("Link", "w200 cRed", t("
-    (
-        推荐: 
-        > <a href="https://github.com/Sly0511/RenewedTroveTools/">RenewedTroveTools</a>工具
-        管理你的Mod和CFG文件, 还有装备推荐、模拟加点、模组开发管理、模组下载等功能
-
-        > <a href="https://qm.qq.com/q/mu0FmpznQm">Trove ToolBox</a>工具
-        管理你的游戏登录, 还有多开窗口自动排列、崩溃重启、防掉线等功能
-    )")
+(
+    推荐: 
+    > <a href="https://github.com/Sly0511/RenewedTroveTools/">RenewedTroveTools</a>工具
+    管理你的Mod和CFG文件, 还有装备推荐、模拟加点、模组开发管理、模组下载等功能
+    
+    > <a href="https://qm.qq.com/q/mu0FmpznQm">Trove ToolBox</a>工具
+    管理你的游戏登录, 还有多开窗口自动排列、崩溃重启、防掉线等功能
+)")
 )
 MainGui.Add("Button", "y+10 w200 h40 vUseLogPathBtn", t("物品栏使用日志文件夹"))
 MainGui.Add("Button", "y+10 w200 h40 vConfigFileBtn", t("打开配置文件"))
@@ -348,6 +351,7 @@ for key, value in Map(
     "Mining", t("快速挖矿"),
     "MiningGeode", t("快速挖矿(晶洞)"),
     "NoClip", t("穿墙"),
+    "perfUnlock", t("性能解放"),
     "UseLog", t("物品栏计数"),
     "Zoom", t("视野放大"),
 )
@@ -433,6 +437,7 @@ for key, value in Map(
     "MiningGeode", t("快速挖矿(晶洞)"),
     "NoClip", t("穿墙"),
     "Player", t("玩家"),
+    "perfUnlock", t("性能解放"),
     "Setting", t("设置"),
     "World", t("世界"),
     "Zoom", t("视野放大"),
@@ -492,12 +497,12 @@ MainGui.Add("ActiveX", "w150 h150 x+30 y+100 Center",
 MainGui.Add("Text", , t("作者: とても残念だ(AnglesD)"))
 MainGui.Add("Text", "cRed", t("本软件完全开源免费, 仅供学习使用！"))
 MainGui.Add("Link", , Format(t("
-    (
-        许可协议: <a href="https://www.gnu.org/licenses/gpl-3.0.zh-cn.html/">GPL-3.0 license</a>`n
-        博客: <a href="https://Angels-D.github.io/">https://Angels-D.github.io</a>`n
-        源码: <a href="https://github.com/Angels-D/TroveAuto">Angels-D/TroveAuto On Github</a>`n
-        应用版本: {1}`n
-    )"), config.data["Global"]["AppVersion"])
+(
+    许可协议: <a href="https://www.gnu.org/licenses/gpl-3.0.zh-cn.html/">GPL-3.0 license</a>`n
+    博客: <a href="https://Angels-D.github.io/">https://Angels-D.github.io</a>`n
+    源码: <a href="https://github.com/Angels-D/TroveAuto">Angels-D/TroveAuto On Github</a>`n
+    应用版本: {1}`n
+)"), config.data["Global"]["AppVersion"])
 )
 MainGui.Add("Button", "y+30 w200 h60 vDownloadBtn", t("最新版脚本下载"))
 
@@ -535,7 +540,7 @@ for key in ["FollowTarget_PlayerName", "FollowTarget_TargetName", "FollowTarget_
         MainGui[key].OnEvent("Click", SomeUiSetChangeEvent)
 }
 for key in ["Animation", "Attack", "BlindMode", "Breakblocks", "ByPass", "ClipCam", "Dismount"
-    , "Health", "LockCam", "Map", "Mining", "MiningGeode", "NoClip", "UseLog", "Zoom"]
+    , "Health", "LockCam", "Map", "Mining", "MiningGeode", "NoClip", "perfUnlock", "UseLog", "Zoom"]
     MainGui[key].OnEvent("Click", Features)
 MainGui["AutoRefresh"].OnEvent("Click", AutoRefresh)
 MainGui["TP"].OnEvent("Click", TP)
@@ -635,7 +640,7 @@ Refresh(GuiCtrlObj := unset, Info := unset) {
 }
 UIReset() {
     for key in ["Animation", "Attack", "BlindMode", "Breakblocks", "ByPass", "ClipCam", "Dismount"
-        , "Health", "LockCam", "Map", "Mining", "MiningGeode", "NoClip", "UseLog", "Zoom"
+        , "Health", "LockCam", "Map", "Mining", "MiningGeode", "NoClip", "perfUnlock", "UseLog", "Zoom"
         , "AutoBtn_Key_Click_LEFT", "AutoBtn_Key_Click_RIGHT", "AutoBtn_NoTop", "HotKeyBox"
         , "Interval", "SelectAction", "StartBtn", "FollowTarget", "FollowTarget_PlayerName"
         , "FollowTarget_TargetName", "FollowTarget_TargetBoss", "FollowTarget_TargetList", "FollowTarget_ScanAll"
@@ -643,7 +648,7 @@ UIReset() {
         , "AutoAim_TargetBoss", "AutoAim_TargetNormal", "AutoAim_TargetPlant"]
         MainGui[key].Enabled := false
     for key in ["Animation", "Attack", "BlindMode", "Breakblocks", "ByPass", "ClipCam", "Dismount"
-        , "Health", "LockCam", "Map", "Mining", "MiningGeode", "NoClip", "UseLog", "Zoom"
+        , "Health", "LockCam", "Map", "Mining", "MiningGeode", "NoClip", "perfUnlock", "UseLog", "Zoom"
         , "AutoBtn_Key_Click_LEFT", "AutoBtn_Key_Click_RIGHT", "AutoBtn_NoTop"
         , "Interval", "SelectAction", "FollowTarget", "FollowTarget_PlayerName"
         , "FollowTarget_TargetName", "FollowTarget_TargetBoss", "FollowTarget_TargetList", "FollowTarget_ScanAll"
@@ -803,7 +808,7 @@ SelectAction(GuiCtrlObj, Info := unset) {
         }
     }
     for key in ["Animation", "BlindMode", "Attack", "Breakblocks", "ByPass", "ClipCam", "Dismount"
-        , "Health", "LockCam", "Map", "Mining", "MiningGeode", "NoClip", "UseLog", "Zoom"] {
+        , "Health", "LockCam", "Map", "Mining", "MiningGeode", "NoClip", "perfUnlock", "UseLog", "Zoom"] {
         MainGui[key].Enabled := true
         MainGui[key].Value := theGame.setting["Features"][key]
     }
@@ -1186,6 +1191,7 @@ class _Config {
         UpdateConfig("Module::Feature::disMount", this.data["Address"]["Dismount"] "|-|-|-")
         UpdateConfig("Module::Feature::lockCam", this.data["Address"]["LockCam"] "|-|-|-")
         UpdateConfig("Module::Feature::unlockMapLimit", this.data["Address"]["Map"] "|-|-|-")
+        UpdateConfig("Module::Feature::perfUnlock", this.data["Address"]["perfUnlock"] "|-|-|-")
         UpdateConfig("Module::Feature::quickMining", this.data["Address"]["Mining"] "|-|-|-")
         UpdateConfig("Module::Feature::quickMiningGeode", this.data["Address"]["MiningGeode"] "|-|-|-")
         UpdateConfig("Module::Feature::noClip", this.data["Address"]["NoClip"] "|-|-|-")
@@ -1527,7 +1533,7 @@ class Game {
             return
 
         for key in ["Animation", "Attack", "BlindMode", "Breakblocks", "ByPass", "ClipCam", "Dismount"
-            , "Health", "LockCam", "Map", "Mining", "MiningGeode", "NoClip", "UseLog", "Zoom"]
+            , "Health", "LockCam", "Map", "Mining", "MiningGeode", "NoClip", "perfUnlock", "UseLog", "Zoom"]
             this.setting["Features"][key] := false
         this.FeaturesHealthFunc := ObjBindMethod(this, "Features_Health")
 
